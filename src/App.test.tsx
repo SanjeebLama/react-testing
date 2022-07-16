@@ -46,7 +46,7 @@ test("button should be enabled when the checkbox is unchecked", () => {
   const buttonElement = screen.getByRole("button", { name: "Change to blue" });
   expect(buttonElement).toBeEnabled();
 
-  const checkboxElement = screen.getByRole("checkbox");
+  const checkboxElement = screen.getByRole("checkbox", {name:"Disable Button"});
   expect(checkboxElement).not.toBeChecked();
 
   fireEvent.click(checkboxElement);
