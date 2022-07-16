@@ -10,7 +10,10 @@ function App() {
     <div className="App">
       <button
         onClick={() => setColor(newButtonText)}
-        style={{ backgroundColor: buttonColor, color: "white" }}
+        style={{
+          backgroundColor: buttonState ? "gray" : buttonColor,
+          color: "white",
+        }}
         disabled={buttonState}
       >
         Change to {newButtonText}
