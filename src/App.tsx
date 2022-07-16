@@ -6,9 +6,9 @@ export function replaceCamelCaseWithSpaces(colorName: string) {
 }
 
 function App() {
-  const [buttonColor, setColor] = useState<string>("red");
+  const [buttonColor, setColor] = useState<string>("MediumVioletRed");
   const [buttonState, setButtonDisabled] = useState<boolean>(false);
-  const newButtonText = buttonColor === "red" ? "blue" : "red";
+  const newButtonText = buttonColor === "MediumVioletRed" ? "MidnightBlue" : "MediumVioletRed";
 
   return (
     <div className="App">
@@ -20,7 +20,7 @@ function App() {
         }}
         disabled={buttonState}
       >
-        Change to {newButtonText}
+        Change to {replaceCamelCaseWithSpaces(newButtonText)}
       </button>
 
       <input
