@@ -3,15 +3,58 @@ import App from "./App";
 
 test("render a button name 'Change color to Blue' ", () => {
   render(<App />);
-  const buttonElement = screen.getByRole("button", { name: "Change to Blue" });
+  const buttonElement = screen.getByRole("button", { name: "Change to blue" });
   expect(buttonElement).toHaveStyle({ backgroundColor: "red" });
 });
 
 test("onClick background color of button should be changed to red", () => {
   render(<App />);
-  const buttonElement = screen.getByRole("button", { name: "Change to Blue" });
+  const buttonElement = screen.getByRole("button", { name: "Change to blue" });
   fireEvent.click(buttonElement);
 
-  expect(buttonElement.textContent).toBe("Change to Red");
+  expect(buttonElement.textContent).toBe("Change to red");
   expect(buttonElement).toHaveStyle({ backgroundColor: "blue" });
+});
+
+test("render a checkbox", () => {
+  render(<App />);
+  const buttonElement = screen.getByRole("button", { name: "Change to blue" });
+  expect(buttonElement).toBeEnabled();
+
+  const checkboxElement = screen.getByRole("checkbox");
+  expect(checkboxElement).not.toBeChecked();
+});
+
+test("when checkbox is checked, the button should be disabled", () => {
+  render(<App />);
+
+  const buttonElement = screen.getByRole("button", { name: "Change to blue" });
+
+  expect(buttonElement).toBeEnabled();
+
+  const checkboxElement = screen.getByRole("checkbox");
+
+  fireEvent.click(checkboxElement);
+
+  expect(checkboxElement).toBeChecked();
+
+  expect(buttonElement).toBeDisabled();
+});
+
+test("button should be enabled when the checkbox is unchecked", () => {
+  render(<App />);
+  const buttonElement = screen.getByRole("button", { name: "Change to blue" });
+  expect(buttonElement).toBeEnabled();
+
+  const checkboxElement = screen.getByRole("checkbox");
+  expect(checkboxElement).not.toBeChecked();
+
+  fireEvent.click(checkboxElement);
+  expect(checkboxElement).toBeChecked();
+
+  expect(buttonElement).toBeDisabled();
+
+  fireEvent.click(checkboxElement);
+  expect(checkboxElement).not.toBeChecked();
+  expect(buttonElement).toBeEnabled();
 });

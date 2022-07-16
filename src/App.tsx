@@ -1,18 +1,25 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const [buttonColor, setColor] = useState("red");
+  const [buttonColor, setColor] = useState<string>("red");
+  const [buttonState, setButtonDisabled] = useState<boolean>(false);
+  const newButtonText = buttonColor === "red" ? "blue" : "red";
 
-  const handleChange = () => {
-    setColor("blue");
-  };
   return (
     <div className="App">
-      <button onClick={handleChange} style={{ backgroundColor: buttonColor }}>
-        {buttonColor === "red" ? "Change to Blue" : "Change to Red"}
+      <button
+        onClick={() => setColor(newButtonText)}
+        style={{ backgroundColor: buttonColor, color: "white" }}
+        disabled={buttonState}
+      >
+        Change to {newButtonText}
       </button>
+
+      <input
+        type="checkbox"
+        onChange={(e) => setButtonDisabled(e.target.checked)}
+      />
     </div>
   );
 }
